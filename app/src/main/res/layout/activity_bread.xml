@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tk.twpooi.happycake.BreadActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:layout_above="@+id/li_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <tk.twpooi.happycake.CustomViewPager
+                android:id="@+id/size_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/size_indicator_ad"
+                >
+
+
+            </tk.twpooi.happycake.CustomViewPager>
+
+            <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
+                android:id="@+id/size_indicator_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <tk.twpooi.happycake.CustomViewPager
+                android:id="@+id/spon_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/spon_indicator_ad"
+                >
+
+
+            </tk.twpooi.happycake.CustomViewPager>
+
+
+            <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
+                android:id="@+id/spon_indicator_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/li_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/previous_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="이전"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="다음"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
