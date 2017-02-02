@@ -10,8 +10,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tk.twpooi.happycake.StartActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <Button
+        android:text="PARIS BAGUETTE"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/parisBaguette" />
+
+    <Button
+        android:textAllCaps="false"
+        android:text="TOUS les JOURS"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/parisBaguette"
+        android:layout_marginTop="70dp"
+        android:id="@+id/tousLesJours"
+        android:layout_alignRight="@+id/parisBaguette"
+        android:layout_alignEnd="@+id/parisBaguette" />
+
+    <Button
+        android:text="PARIS CROISSANT"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tousLesJours"
+        android:layout_alignLeft="@+id/tousLesJours"
+        android:layout_alignStart="@+id/tousLesJours"
+        android:layout_marginTop="70dp"
+        android:id="@+id/parisCroissant" />
 </RelativeLayout>
