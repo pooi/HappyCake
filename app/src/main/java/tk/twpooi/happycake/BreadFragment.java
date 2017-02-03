@@ -33,14 +33,14 @@ public class BreadFragment extends Fragment {
 
     // RESOURCES
     private int[] sizeDrawable = {
-            R.drawable.cake_size_01,
-            R.drawable.cake_size_02,
-            R.drawable.cake_size_03
+            R.drawable.cake_size_popup,
+            R.drawable.cake_size_popup,
+            R.drawable.cake_size_popup
     };
     private int[] sponDrawable = {
-            R.drawable.spon_default,
-            R.drawable.spon_straw,
-            R.drawable.spon_choco
+            R.drawable.spon_default_popup,
+            R.drawable.spon_straw_popup,
+            R.drawable.spon_choco_popup
     };
 
     @Override
@@ -89,8 +89,12 @@ public class BreadFragment extends Fragment {
                 if(!BreadActivity.isSelectFinish) {
                     Intent intent = new Intent(context, BreadPopupActivity.class);
                     intent.putExtra("code", resultCode);
+                    intent.putExtra("position", position);
+                    intent.putExtra("title", title);
+                    intent.putExtra("content", content);
                     if(resultCode == BreadActivity.SELECT_SIZE){
                         intent.putExtra("resource", sizeDrawable[position]);
+                        intent.putExtra("price", BreadActivity.priceList[position]);
                     }else if(resultCode == BreadActivity.SELECT_SPON){
                         intent.putExtra("resource", sponDrawable[position]);
                     }

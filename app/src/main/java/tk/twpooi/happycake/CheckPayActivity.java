@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,13 +18,17 @@ import android.widget.Toast;
 
 import com.flyco.animation.FadeEnter.FadeEnter;
 import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.MaterialDialog;
+import com.flyco.dialog.widget.NormalListDialog;
 import com.github.ksoichiro.android.observablescrollview.CacheFragmentStatePagerAdapter;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class CheckPayActivity extends BaseActivity {
 
@@ -44,6 +49,7 @@ public class CheckPayActivity extends BaseActivity {
     private TextView payBtn;
 
     // Data
+    private HashMap<String, Object> data;
     private String shop;
     private String date;
     private String time;
@@ -58,6 +64,11 @@ public class CheckPayActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_pay);
 
+        data = (HashMap<String, Object>)getIntent().getSerializableExtra("data");
+
+        price = (String)data.get("price");
+        totalPrice = price;
+        cakeTitle = String.format("[%s] %s %s베이스 생크림 케이크", (String)data.get("shop"), (String)data.get("size"), (String)data.get("spon"));
 
         InitData();
 
@@ -134,10 +145,19 @@ public class CheckPayActivity extends BaseActivity {
         });
         editPickPerson = (EditText)findViewById(R.id.edit_pick_person);
         tv_tele_1 = (TextView)findViewById(R.id.tv_tele_1);
+        tv_tele_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showListDialog();
+            }
+        });
         tv_tele_2 = (EditText)findViewById(R.id.tv_tele_2);
         tv_cakeTitle = (TextView)findViewById(R.id.tv_cake_title);
+        tv_cakeTitle.setText(cakeTitle);
         tv_price = (TextView)findViewById(R.id.tv_price);
+        tv_price.setText(price);
         tv_totalPrice = (TextView)findViewById(R.id.tv_total_price);
+        tv_totalPrice.setText(totalPrice);
         payBtn = (TextView)findViewById(R.id.pay_btn);
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +166,30 @@ public class CheckPayActivity extends BaseActivity {
             }
         });
         setFont(payBtn, Bareun3);
+
+    }
+
+    public void showListDialog() {
+        final String[] list = {
+                "010",
+                "011",
+                "016",
+                "017",
+                "018",
+                "019"
+        };
+        final NormalListDialog dialog = new NormalListDialog(this, list);
+        dialog.title("선택")
+                .titleTextSize_SP(14.5f)
+                .show();
+
+        dialog.setOnOperItemClickL(new OnOperItemClickL() {
+            @Override
+            public void onOperItemClick(AdapterView<?> parent, View view, int position, long id) {
+                tv_tele_1.setText(list[position]);
+                dialog.dismiss();
+            }
+        });
 
     }
 
@@ -192,6 +236,13 @@ public class CheckPayActivity extends BaseActivity {
         };
         dialog.setOnBtnClickL(left, right);
 
+    }
+
+    public static String Comma_won(String junsu) {
+        int inValues = Integer.parseInt(junsu);
+        DecimalFormat Commas = new DecimalFormat("#,###");
+        String result_int = (String)Commas.format(inValues);
+        return result_int;
     }
 
 

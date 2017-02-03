@@ -23,10 +23,17 @@ public class BreadPopupActivity extends BaseActivity {
     private RelativeLayout root;
     private ImageView img;
     private Button selectBtn;
+    private TextView tv_title;
+    private TextView tv_sizeText;
+    private TextView tv_priceText;
 
     // DATA
     private int resultCode;
     private int resourceId;
+    private int position;
+    private String title;
+    private String content;
+    private String price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,10 @@ public class BreadPopupActivity extends BaseActivity {
         Intent intent = getIntent();
         resultCode = intent.getIntExtra("code", -1);
         resourceId = intent.getIntExtra("resource", -1);
+        position = intent.getIntExtra("position", 0);
+        title = intent.getStringExtra("title");
+        content = intent.getStringExtra("content");
+        price = intent.getStringExtra("price");
 
     }
 
@@ -65,10 +76,22 @@ public class BreadPopupActivity extends BaseActivity {
         selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(resultCode);
+                Intent intent = new Intent();
+                intent.putExtra("position", position);
+                setResult(resultCode, intent);
                 finish();
             }
         });
+        tv_title = (TextView)findViewById(R.id.tv_title);
+        tv_title.setText(title);
+        tv_sizeText = (TextView)findViewById(R.id.tv_size_text);
+        tv_sizeText.setText(content);
+        tv_priceText = (TextView)findViewById(R.id.tv_price_text);
+        if(price != null){
+            tv_priceText.setText("가격 : " + price);
+        }else{
+            tv_priceText.setVisibility(View.GONE);
+        }
 
 
     }

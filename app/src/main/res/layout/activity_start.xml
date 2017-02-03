@@ -13,40 +13,51 @@
         android:scaleType="centerCrop"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="매장선택"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            >
 
-        <Button
-            android:text="PARIS BAGUETTE"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="70dp"
-            android:id="@+id/parisBaguette" />
+            <ImageView
+                android:id="@+id/paris_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                />
 
-        <Button
-            android:textAllCaps="false"
-            android:text="TOUS les JOURS"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/parisBaguette"
-            android:layout_marginTop="70dp"
-            android:id="@+id/tousLesJours"
-            android:layout_alignRight="@+id/parisBaguette"
-            android:layout_alignEnd="@+id/parisBaguette" />
+            <ImageView
+                android:id="@+id/tous_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                />
 
-        <Button
-            android:text="PARIS CROISSANT"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/tousLesJours"
-            android:layout_alignLeft="@+id/tousLesJours"
-            android:layout_alignStart="@+id/tousLesJours"
-            android:layout_marginTop="70dp"
-            android:id="@+id/parisCroissant" />
+            <ImageView
+                android:id="@+id/cro_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                />
+
+
+        </LinearLayout>
 
     </RelativeLayout>
 

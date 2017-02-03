@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 /**
  * Created by Sungmin on 2017-02-02.
  */
@@ -25,10 +27,15 @@ public class FinalInformation extends BaseActivity {
     private ImageView back;
     private ImageView goToNext;
 
+    private HashMap<String, Object> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finalinformation);
+
+        data = (HashMap<String, Object>)getIntent().getSerializableExtra("data");
+
         cake = (ImageView) findViewById(R.id.cake);
         cake.setImageResource(R.drawable.ic_launcher);
 
@@ -42,11 +49,6 @@ public class FinalInformation extends BaseActivity {
         back = (ImageView) findViewById(R.id.previous_btn);
         goToNext = (ImageView) findViewById(R.id.next_btn);
 
-        //이전 단계에서 인텐트로 받아온 값들
-//        Intent intent = getIntent();
-//        finalSizeText.setText(intent.getExtras().getString("finalSize"));
-//        finalToppingText.setText(intent.getExtras().getString("finalSponge"));
-//        finalToppingText.setText(intent.getExtras().getString("finalTopping"));
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,7 @@ public class FinalInformation extends BaseActivity {
                 Intent intent = new Intent(
                         getApplicationContext(),
                         CheckPayActivity.class);
+                intent.putExtra("data", data);
                 startActivity(intent);
             }
         });

@@ -28,24 +28,53 @@
                 android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/tv_title"
+                android:layout_above="@+id/li_text"
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/cake_size_01"
                 android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"
                 />
 
-            <TextView
-                android:id="@+id/tv_title"
+            <LinearLayout
+                android:id="@+id/li_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_alignParentBottom="true"
-                android:padding="5dp"
-                android:gravity="center"
-                android:text="선택"
-                android:textSize="14sp"
-                android:textColor="@color/dark_gray"
-                />
+                >
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="title"
+                    android:textSize="16sp"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginBottom="5dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_size_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="content"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_gray"
+                    />
+                <TextView
+                    android:id="@+id/tv_price_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="content"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="5dp"
+                    />
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 

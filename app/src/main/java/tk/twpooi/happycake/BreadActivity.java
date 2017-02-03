@@ -23,6 +23,7 @@ import com.github.ksoichiro.android.observablescrollview.CacheFragmentStatePager
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BreadActivity extends BaseActivity {
 
@@ -46,15 +47,24 @@ public class BreadActivity extends BaseActivity {
     private ImageView nextBtn;
 
     // Data
+    private HashMap<String, Object> data;
+    private String size;
+    private String spon;
+    private String price;
+    public static String[] priceList = {
+            "18,000원",
+            "26,000원",
+            "32,000원"
+    };
     private String[] sizeTitleList = {
             "1호",
             "2호",
             "3호"
     };
     private String[] sizeContentList = {
-            "1호 사이즈",
-            "2호 사이즈",
-            "3호 사이즈"
+            "지름 15cm X 높이 6cm",
+            "지름 17cm X 높이 5cm",
+            "지름 20.5cm X 높이 5cm"
     };
     private String[] sponTitleList = {
             "일반",
@@ -62,9 +72,9 @@ public class BreadActivity extends BaseActivity {
             "초코"
     };
     private String[] sponContentList = {
-            "일반 설명",
-            "딸기 설명",
-            "초코 설명"
+            "기본적인 빵으로 만들어진 베이스입니다.",
+            "기본적인 빵으로 만들어진 베이스입니다.",
+            "기본적인 빵으로 만들어진 베이스입니다."
     };
 
     public static boolean isSelectFinish;
@@ -86,9 +96,13 @@ public class BreadActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bread);
 
-        InitUI();
+        Intent intent = getIntent();
+        data = (HashMap<String, Object>)intent.getSerializableExtra("data");
 
         InitData();
+
+        InitUI();
+
 
 
     }
@@ -124,9 +138,13 @@ public class BreadActivity extends BaseActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                data.put("size", size);
+                data.put("spon", spon);
+                data.put("price", price);
                 Intent intent = new Intent(
                         getApplicationContext(),
                         FinalInformation.class);
+                intent.putExtra("data", data);
                 startActivity(intent);
             }
         });
@@ -226,12 +244,15 @@ public class BreadActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case SELECT_SIZE:
+                size = sizeTitleList[data.getIntExtra("position", 0)];
+                price = priceList[data.getIntExtra("position", 0)];
                 sizeSelectField.setVisibility(View.GONE);
                 SetFadeOutAnimation(sizeSelectField);
                 sponSelectField.setVisibility(View.VISIBLE);
                 SetFadeInAnimation(sponSelectField);
                 break;
             case SELECT_SPON:
+                spon = sponTitleList[data.getIntExtra("position", 0)];
                 sizeBackground.setVisibility(View.GONE);
                 sponBackground.setVisibility(View.GONE);
                 sizeSelectField.setVisibility(View.VISIBLE);
