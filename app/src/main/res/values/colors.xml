@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">@color/gray</color>
+    <color name="colorPrimaryDark">@color/gray</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Addition color -->
@@ -19,6 +19,9 @@
 
     <!-- Popup Color -->
     <color name="popup_background">#ffe2c0</color>
+
+    <color name="basic_yellow">#ffd527</color>
+    <color name="basic_blue">#aeecff</color>
 
 
 </resources>

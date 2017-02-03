@@ -204,10 +204,13 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:background="@drawable/round_button_transparent"
-            android:text="옵션보기"
+            android:text="과일설정"
             android:textColor="@color/white"
             />
 

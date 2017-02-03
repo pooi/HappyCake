@@ -12,62 +12,20 @@
         />
 
     <RelativeLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-        <ImageView
-            android:id="@+id/cake"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/finalSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/finalSizeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/finalSponge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/finalSpongeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/finalTopping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/finalToppingText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:text="케이크가 완성되었습니다."
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="90dp"
+            />
 
     </RelativeLayout>
 
@@ -86,6 +44,21 @@
             android:layout_alignParentLeft="true"
             />
 
+        <TextView
+            android:id="@+id/show_list_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/round_button_transparent"
+            android:text="내역보기"
+            android:textColor="@color/white"
+            />
 
         <ImageView
             android:id="@+id/next_btn"

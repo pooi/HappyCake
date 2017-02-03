@@ -2,6 +2,7 @@ package tk.twpooi.happycake;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,7 +41,7 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
     private MyHandler handler = new MyHandler();
     private final int MSG_MESSAGE_MAKE_UI = 500;
 
-    private RelativeLayout root;
+    private  RelativeLayout root;
     private FrameLayout defaultStrawImage;
     private FrameLayout defaultGrapImage;
     private FrameLayout defaultBlueImage;
@@ -118,11 +122,15 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(
-                        getApplicationContext(),
-                        MakeCakeActivity.class);
-                intent.putExtra("data", data);
-                startActivity(intent);
+                if(straw.size() <= 0 && grap.size() <= 0 && blue.size() <= 0){
+
+                    Intent intent = new Intent(
+                            getApplicationContext(),
+                            FinalInformation.class);
+                    intent.putExtra("data", data);
+                    intent.putExtra("cake", saveLayout());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -156,6 +164,37 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
                 }
             }
         }.start();
+
+    }
+
+    private HashMap<String, Object> saveLayout(){
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        ArrayList<Point> strawPointList = new ArrayList<>();
+        for(int i=0; i<strawCompleteList.size(); i++){
+            ImageView v = strawCompleteList.get(i);
+            strawPointList.add(new Point((int)v.getX(), (int)v.getY()));
+        }
+        ArrayList<Point> grapPointList = new ArrayList<>();
+        for(int i=0; i<grapCompleteList.size(); i++){
+            ImageView v = grapCompleteList.get(i);
+            grapPointList.add(new Point((int)v.getX(), (int)v.getY()));
+        }
+        ArrayList<Point> bluePointList = new ArrayList<>();
+        for(int i=0; i<blueCompleteList.size(); i++){
+            ImageView v = blueCompleteList.get(i);
+            bluePointList.add(new Point((int)v.getX(), (int)v.getY()));
+        }
+
+        Point point = new Point((int)cake.getX(), (int)cake.getY());
+
+        map.put("straw", strawPointList);
+        map.put("grap", grapPointList);
+        map.put("blue", bluePointList);
+        map.put("cake", point);
+
+        return map;
 
     }
 
