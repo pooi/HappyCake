@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,8 +30,10 @@ public class BreadActivity extends BaseActivity {
     public static final int SELECT_SPON = 1001;
 
     // UI
-    private RelativeLayout sizeSelectField;
-    private RelativeLayout sponSelectField;
+    private ImageView sizeBackground;
+    private ImageView sponBackground;
+    private FrameLayout sizeSelectField;
+    private FrameLayout sponSelectField;
     private PagerContainer sizeViewPagerContainer;
     private CustomViewPager sizeViewPager;
     private SizeNavigationAdapter mSizePagerAdapter;
@@ -39,8 +42,8 @@ public class BreadActivity extends BaseActivity {
     private CustomViewPager sponViewPager;
     private SponNavigationAdapter mSponPagerAdapter;
     private DotIndicator sponDotIndicator;
-    private TextView previousBtn;
-    private TextView nextBtn;
+    private ImageView previousBtn;
+    private ImageView nextBtn;
 
     // Data
     private String[] sizeTitleList = {
@@ -64,8 +67,17 @@ public class BreadActivity extends BaseActivity {
             "초코 설명"
     };
 
-    private int SIZE = 3;
     public static boolean isSelectFinish;
+    private int[] sizeResourceList = {
+            R.drawable.cake_size_01,
+            R.drawable.cake_size_02,
+            R.drawable.cake_size_03
+    };
+    private int[] sponResourceList = {
+            R.drawable.spon_default,
+            R.drawable.spon_straw,
+            R.drawable.spon_choco
+    };
 
 
 
@@ -101,14 +113,14 @@ public class BreadActivity extends BaseActivity {
 
     private void InitUI(){
 
-        previousBtn = (TextView)findViewById(R.id.previous_btn);
+        previousBtn = (ImageView)findViewById(R.id.previous_btn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        nextBtn = (TextView)findViewById(R.id.next_btn);
+        nextBtn = (ImageView)findViewById(R.id.next_btn);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,15 +138,16 @@ public class BreadActivity extends BaseActivity {
 
     private void SetViewPager(){
 
+        sizeBackground = (ImageView)findViewById(R.id.size_bg);
         sizeViewPagerContainer = (PagerContainer)findViewById(R.id.size_view_pager_container);
-        sizeSelectField = (RelativeLayout)findViewById(R.id.size_select_field);
+        sizeSelectField = (FrameLayout)findViewById(R.id.size_select_field);
         sizeDotIndicator = (DotIndicator)findViewById(R.id.size_indicator_ad);
-        InitIndicator(sizeDotIndicator, SIZE);
+        InitIndicator(sizeDotIndicator, sizeResourceList.length);
         sizeViewPager = (CustomViewPager)sizeViewPagerContainer.getViewPager();//findViewById(R.id.size_view_pager);
-        sizeViewPager.setOffscreenPageLimit(SIZE);
-        mSizePagerAdapter = new SizeNavigationAdapter(getSupportFragmentManager(), sizeTitleList, sizeContentList);
+        sizeViewPager.setOffscreenPageLimit(sizeResourceList.length);
+        mSizePagerAdapter = new SizeNavigationAdapter(getSupportFragmentManager(), sizeTitleList, sizeContentList, sizeResourceList);
         sizeViewPager.setAdapter(mSizePagerAdapter);
-        sizeViewPager.setPageMargin(15);
+//        sizeViewPager.setPageMargin(15);
         sizeViewPager.setClipChildren(false);
 
         sizeViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -156,14 +169,15 @@ public class BreadActivity extends BaseActivity {
             }
         });
 
+        sponBackground = (ImageView)findViewById(R.id.spon_bg);
         sponViewPagerContainer = (PagerContainer)findViewById(R.id.spon_view_pager_container);
-        sponSelectField = (RelativeLayout)findViewById(R.id.spon_select_field);
+        sponSelectField = (FrameLayout)findViewById(R.id.spon_select_field);
         sponSelectField.setVisibility(View.GONE);
         sponDotIndicator = (DotIndicator)findViewById(R.id.spon_indicator_ad);
-        InitIndicator(sponDotIndicator, SIZE);
+        InitIndicator(sponDotIndicator, sponResourceList.length);
         sponViewPager = (CustomViewPager)sponViewPagerContainer.getViewPager();//findViewById(R.id.spon_view_pager);
-        sponViewPager.setOffscreenPageLimit(SIZE);
-        mSponPagerAdapter = new SponNavigationAdapter(getSupportFragmentManager(), sponTitleList, sponContentList);
+        sponViewPager.setOffscreenPageLimit(sponResourceList.length);
+        mSponPagerAdapter = new SponNavigationAdapter(getSupportFragmentManager(), sponTitleList, sponContentList, sponResourceList);
         sponViewPager.setAdapter(mSponPagerAdapter);
         sponViewPager.setPageMargin(15);
         sponViewPager.setClipChildren(false);
@@ -185,6 +199,9 @@ public class BreadActivity extends BaseActivity {
             }
         });
 
+
+        sizeBackground.setVisibility(View.VISIBLE);
+        sponBackground.setVisibility(View.VISIBLE);
 
     }
 
@@ -215,6 +232,8 @@ public class BreadActivity extends BaseActivity {
                 SetFadeInAnimation(sponSelectField);
                 break;
             case SELECT_SPON:
+                sizeBackground.setVisibility(View.GONE);
+                sponBackground.setVisibility(View.GONE);
                 sizeSelectField.setVisibility(View.VISIBLE);
                 SetFadeInAnimation(sizeSelectField);
                 nextBtn.setVisibility(View.VISIBLE);
@@ -232,11 +251,13 @@ public class BreadActivity extends BaseActivity {
 
         private String[] list;
         private String[] contentList;
+        private int[] resourceList;
 
-        public SizeNavigationAdapter(FragmentManager fm, String[] list, String[] contentList){
+        public SizeNavigationAdapter(FragmentManager fm, String[] list, String[] contentList, int[] resourceList){
             super(fm);
             this.list = list;
             this.contentList = contentList;
+            this.resourceList = resourceList;
         }
 
         @Override
@@ -249,6 +270,7 @@ public class BreadActivity extends BaseActivity {
             bdl.putInt("position", pattern);
             bdl.putString("title", list[pattern]);
             bdl.putString("content", contentList[pattern]);
+            bdl.putInt("resource", resourceList[pattern]);
             bdl.putInt("code", SELECT_SIZE);
             f.setArguments(bdl);
 
@@ -266,11 +288,13 @@ public class BreadActivity extends BaseActivity {
 
         private String[] list;
         private String[] contentList;
+        private int[] resourceList;
 
-        public SponNavigationAdapter(FragmentManager fm, String[] list, String[] contentList){
+        public SponNavigationAdapter(FragmentManager fm, String[] list, String[] contentList, int[] resourceList){
             super(fm);
             this.list = list;
             this.contentList = contentList;
+            this.resourceList = resourceList;
         }
 
         @Override
@@ -283,6 +307,7 @@ public class BreadActivity extends BaseActivity {
             bdl.putInt("position", pattern);
             bdl.putString("title", list[pattern]);
             bdl.putString("content", contentList[pattern]);
+            bdl.putInt("resource", resourceList[pattern]);
             bdl.putInt("code", SELECT_SPON);
             f.setArguments(bdl);
 

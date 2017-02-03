@@ -22,8 +22,8 @@ public class FinalInformation extends BaseActivity {
     private TextView finalTopping;
     private TextView finalToppingText;
 
-    private Button back;
-    private Button goToNext;
+    private ImageView back;
+    private ImageView goToNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class FinalInformation extends BaseActivity {
         finalTopping = (TextView) findViewById(R.id.finalTopping);
         finalToppingText = (TextView) findViewById(R.id.finalToppingText);
 
-        back = (Button) findViewById(R.id.back);
-        goToNext = (Button) findViewById(R.id.goToNext);
+        back = (ImageView) findViewById(R.id.previous_btn);
+        goToNext = (ImageView) findViewById(R.id.next_btn);
 
         //이전 단계에서 인텐트로 받아온 값들
 //        Intent intent = getIntent();

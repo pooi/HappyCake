@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="tk.twpooi.happycake.StartActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_11"
+        android:scaleType="centerCrop"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

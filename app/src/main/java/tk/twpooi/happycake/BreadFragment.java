@@ -24,11 +24,24 @@ public class BreadFragment extends Fragment {
     private int position;
     private String title;
     private String content;
+    private int resourceId;
 
     // UI
     private ImageView imageView;
     private TextView tv_title;
     private TextView tv_content;
+
+    // RESOURCES
+    private int[] sizeDrawable = {
+            R.drawable.cake_size_01,
+            R.drawable.cake_size_02,
+            R.drawable.cake_size_03
+    };
+    private int[] sponDrawable = {
+            R.drawable.spon_default,
+            R.drawable.spon_straw,
+            R.drawable.spon_choco
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -39,6 +52,7 @@ public class BreadFragment extends Fragment {
         position = getArguments().getInt("position");
         title = getArguments().getString("title");
         content = getArguments().getString("content");
+        resourceId = getArguments().getInt("resource");
     }
 
 
@@ -46,7 +60,11 @@ public class BreadFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // UI
-        view = inflater.inflate(R.layout.fragment_bread, container, false);
+        if(resultCode == BreadActivity.SELECT_SIZE) {
+            view = inflater.inflate(R.layout.fragment_bread, container, false);
+        }else{
+            view = inflater.inflate(R.layout.fragment_bread2, container, false);
+        }
         context = container.getContext();
 
         initData();
@@ -64,13 +82,18 @@ public class BreadFragment extends Fragment {
     private void initUI(){
 
         imageView = (ImageView)view.findViewById(R.id.img);
-        imageView.setImageResource(R.drawable.ic_launcher);
+        imageView.setImageResource(resourceId);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!BreadActivity.isSelectFinish) {
                     Intent intent = new Intent(context, BreadPopupActivity.class);
                     intent.putExtra("code", resultCode);
+                    if(resultCode == BreadActivity.SELECT_SIZE){
+                        intent.putExtra("resource", sizeDrawable[position]);
+                    }else if(resultCode == BreadActivity.SELECT_SPON){
+                        intent.putExtra("resource", sponDrawable[position]);
+                    }
                     getActivity().startActivityForResult(intent, resultCode);
                 }
             }

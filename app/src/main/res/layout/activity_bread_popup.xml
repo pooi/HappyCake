@@ -28,9 +28,11 @@
                 android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter"
                 android:layout_above="@+id/tv_title"
                 android:layout_marginBottom="5dp"
+                android:src="@drawable/cake_size_01"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
                 />
 
             <TextView

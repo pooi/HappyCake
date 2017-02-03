@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="missingPrefix"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,131 +9,162 @@
     tools:context="tk.twpooi.happycake.BreadActivity"
     >
 
-    <LinearLayout
-        android:id="@+id/li_select_field"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/li_select_field"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+
+            <FrameLayout
+                android:id="@+id/size_select_field"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/bread_select_background"
+                >
+
+                <ImageView
+                    android:id="@+id/size_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bg_12"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    >
+
+
+                    <tk.twpooi.happycake.PagerContainer
+                        android:id="@+id/size_view_pager_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@+id/size_indicator_ad"
+                        >
+
+                        <tk.twpooi.happycake.CustomViewPager
+                            android:id="@+id/size_view_pager"
+                            android:layout_width="250dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            >
+
+
+                        </tk.twpooi.happycake.CustomViewPager>
+
+                    </tk.twpooi.happycake.PagerContainer>
+
+
+                    <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
+                        android:id="@+id/size_indicator_ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                </RelativeLayout>
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/spon_select_field"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/bread_select_background"
+                >
+
+
+                <ImageView
+                    android:id="@+id/spon_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/bg_12"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    >
+
+
+                    <tk.twpooi.happycake.PagerContainer
+                        android:id="@+id/spon_view_pager_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@+id/spon_indicator_ad"
+                        >
+
+                        <tk.twpooi.happycake.CustomViewPager
+                            android:id="@+id/spon_view_pager"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            >
+
+
+                        </tk.twpooi.happycake.CustomViewPager>
+
+                    </tk.twpooi.happycake.PagerContainer>
+
+
+                    <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
+                        android:id="@+id/spon_indicator_ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                </RelativeLayout>
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/li_button"
         >
 
-
-        <RelativeLayout
-            android:id="@+id/size_select_field"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/bread_select_background"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            >
-
-            <tk.twpooi.happycake.PagerContainer
-                android:id="@+id/size_view_pager_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/size_indicator_ad"
-                >
-
-                <tk.twpooi.happycake.CustomViewPager
-                    android:id="@+id/size_view_pager"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-
-                </tk.twpooi.happycake.CustomViewPager>
-
-            </tk.twpooi.happycake.PagerContainer>
-
-
-            <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
-                android:id="@+id/size_indicator_ad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/spon_select_field"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/bread_select_background"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            >
-
-
-            <tk.twpooi.happycake.PagerContainer
-                android:id="@+id/spon_view_pager_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/spon_indicator_ad"
-                >
-
-                <tk.twpooi.happycake.CustomViewPager
-                    android:id="@+id/spon_view_pager"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    >
-
-
-                </tk.twpooi.happycake.CustomViewPager>
-
-            </tk.twpooi.happycake.PagerContainer>
-
-
-            <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
-                android:id="@+id/spon_indicator_ad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                />
-
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/li_button"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        >
-
-        <TextView
+        <ImageView
             android:id="@+id/previous_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:text="이전"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_left_grey600_48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             />
 
-        <TextView
+
+        <ImageView
             android:id="@+id/next_btn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="다음"
-            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right_grey600_48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</FrameLayout>

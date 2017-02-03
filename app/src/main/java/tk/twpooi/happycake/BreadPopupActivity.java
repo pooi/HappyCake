@@ -26,6 +26,7 @@ public class BreadPopupActivity extends BaseActivity {
 
     // DATA
     private int resultCode;
+    private int resourceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,9 @@ public class BreadPopupActivity extends BaseActivity {
         setContentView(R.layout.activity_bread_popup);
 
 
-        InitUI();
-
         InitData();
+
+        InitUI();
 
 
     }
@@ -45,6 +46,7 @@ public class BreadPopupActivity extends BaseActivity {
 
         Intent intent = getIntent();
         resultCode = intent.getIntExtra("code", -1);
+        resourceId = intent.getIntExtra("resource", -1);
 
     }
 
@@ -58,7 +60,7 @@ public class BreadPopupActivity extends BaseActivity {
             }
         });
         img = (ImageView)findViewById(R.id.img);
-        img.setImageResource(R.drawable.ic_launcher);
+        img.setImageResource(resourceId);
         selectBtn = (Button)findViewById(R.id.select_btn);
         selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
