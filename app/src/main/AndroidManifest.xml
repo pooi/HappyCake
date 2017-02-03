@@ -57,6 +57,8 @@
                 <category android:name="tk.twpooi.seoultrip" />
             </intent-filter>
         </activity>
+  
+  <activity android:name=".MyTwo"></activity>
 
     </application>
 
