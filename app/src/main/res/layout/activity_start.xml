@@ -36,36 +36,5 @@
         android:layout_marginTop="70dp"
         android:id="@+id/parisCroissant" />
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:gravity="center"-->
-        <!--&gt;-->
-
-        <!--<Button-->
-            <!--android:id="@+id/tempBtn"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="빵선택"-->
-            <!--/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/tempBtn2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="결제창"-->
-            <!--/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/tempBtn3"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="마지막창"-->
-            <!--/>-->
-
-    <!--</LinearLayout>-->
-
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="missingPrefix"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,8 +15,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_above="@+id/li_button"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         >
 
 
@@ -23,6 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/bread_select_background"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             >
 
             <tk.twpooi.happycake.PagerContainer
@@ -60,6 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/bread_select_background"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             >
 
 
@@ -105,22 +111,24 @@
         android:layout_alignParentBottom="true"
         >
 
-        <Button
+        <TextView
             android:id="@+id/previous_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
+            android:gravity="center"
             android:text="이전"
             android:textColor="@color/white"
             />
 
-        <Button
+        <TextView
             android:id="@+id/next_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorAccent"
+            android:gravity="center"
             android:text="다음"
             android:textColor="@color/white"
             />

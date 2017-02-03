@@ -1,16 +1,14 @@
 package tk.twpooi.happycake;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-import android.content.Intent;
-import android.widget.Button;
-import android.view.View;
-
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,34 +25,6 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        Button tempBtn = (Button)findViewById(R.id.tempBtn);
-//        tempBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), BreadActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button tempBtn2 = (Button)findViewById(R.id.tempBtn2);
-//        tempBtn2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), CheckPayActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//
-//
-//        Button tempBtn3 = (Button)findViewById(R.id.tempBtn3);
-//        tempBtn3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), FinalInformation.class);
-//                startActivity(intent);
-//            }
-//        });
     }
+
 }

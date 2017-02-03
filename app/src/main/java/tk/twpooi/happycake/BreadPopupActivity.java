@@ -2,6 +2,7 @@ package tk.twpooi.happycake;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,11 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.CacheFragmentStatePagerAdapter;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
-public class BreadPopupActivity extends AppCompatActivity {
+public class BreadPopupActivity extends BaseActivity {
 
     // UI
     private RelativeLayout root;
@@ -65,6 +67,7 @@ public class BreadPopupActivity extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 

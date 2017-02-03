@@ -1,6 +1,8 @@
 package tk.twpooi.happycake;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,7 +25,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
-public class CheckPayActivity extends AppCompatActivity {
+public class CheckPayActivity extends BaseActivity {
 
     // UI
     private TextView tv_shop;
@@ -124,6 +126,7 @@ public class CheckPayActivity extends AppCompatActivity {
                 ShowPayAlert();
             }
         });
+        setFont(payBtn, Bareun3);
 
     }
 
@@ -162,11 +165,15 @@ public class CheckPayActivity extends AppCompatActivity {
             @Override
             public void onBtnClick() {
                 dialog.dismiss();
-                finish();
+                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         };
         dialog.setOnBtnClickL(left, right);
 
     }
+
+
 
 }

@@ -1,7 +1,9 @@
 package tk.twpooi.happycake;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,13 +16,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.CacheFragmentStatePagerAdapter;
 import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
 
 import java.util.ArrayList;
 
-public class BreadActivity extends AppCompatActivity {
+public class BreadActivity extends BaseActivity {
 
     public static final int SELECT_SIZE = 1000;
     public static final int SELECT_SPON = 1001;
@@ -36,8 +39,8 @@ public class BreadActivity extends AppCompatActivity {
     private CustomViewPager sponViewPager;
     private SponNavigationAdapter mSponPagerAdapter;
     private DotIndicator sponDotIndicator;
-    private Button previousBtn;
-    private Button nextBtn;
+    private TextView previousBtn;
+    private TextView nextBtn;
 
     // Data
     private String[] sizeTitleList = {
@@ -70,7 +73,6 @@ public class BreadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bread);
 
-
         InitUI();
 
         InitData();
@@ -98,14 +100,14 @@ public class BreadActivity extends AppCompatActivity {
 
     private void InitUI(){
 
-        previousBtn = (Button)findViewById(R.id.previous_btn);
+        previousBtn = (TextView)findViewById(R.id.previous_btn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        nextBtn = (Button)findViewById(R.id.next_btn);
+        nextBtn = (TextView)findViewById(R.id.next_btn);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -280,4 +282,5 @@ public class BreadActivity extends AppCompatActivity {
 
 
     }
+
 }

@@ -17,5 +17,8 @@
     <color name="linecolor">#bebebe</color>
     <color name="transparency">#00000000</color>
 
+    <!-- Popup Color -->
+    <color name="popup_background">#ffe2c0</color>
+
 
 </resources>

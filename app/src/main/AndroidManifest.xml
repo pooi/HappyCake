@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".CustomStartApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -37,7 +38,7 @@
         <activity
             android:name=".BreadPopupActivity"
             android:label="Contents"
-            android:theme="@style/AppNoActionBar"
+            android:theme="@style/AppTheme"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,18 +72,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MyTwo"
-            android:label="Contents"
-            android:theme="@style/AppTheme"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="tk.twpooi.happycake" />
-            </intent-filter>
-        </activity>
-  
 
     </application>
 
