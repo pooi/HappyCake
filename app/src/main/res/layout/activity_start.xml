@@ -4,14 +4,39 @@
     android:id="@+id/activity_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tk.twpooi.happycake.StartActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/tempBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="빵선택"
+            />
+
+        <Button
+            android:id="@+id/tempBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결제창"
+            />
+
+        <Button
+            android:id="@+id/tempBtn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="마지막창"
+            />
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>
