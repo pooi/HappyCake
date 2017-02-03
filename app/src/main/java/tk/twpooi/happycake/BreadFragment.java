@@ -35,12 +35,10 @@ public class BreadFragment extends Fragment {
     {
         super.onCreate(savedInstanceState);
 
-//        title = (String)getArguments().getSerializable("title");
         resultCode = getArguments().getInt("code");
         position = getArguments().getInt("position");
         title = getArguments().getString("title");
         content = getArguments().getString("content");
-//        isOverlay = getArguments().getBoolean("visiable", false);
     }
 
 
@@ -70,9 +68,11 @@ public class BreadFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, BreadPopupActivity.class);
-                intent.putExtra("code", resultCode);
-                getActivity().startActivityForResult(intent, resultCode);
+                if(!BreadActivity.isSelectFinish) {
+                    Intent intent = new Intent(context, BreadPopupActivity.class);
+                    intent.putExtra("code", resultCode);
+                    getActivity().startActivityForResult(intent, resultCode);
+                }
             }
         });
         tv_title = (TextView)view.findViewById(R.id.tv_title);

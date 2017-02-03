@@ -1,40 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tk.twpooi.happycake.StartActivity">
 
-    <Button
-        android:text="PARIS BAGUETTE"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:id="@+id/parisBaguette" />
-
-    <Button
-        android:textAllCaps="false"
-        android:text="TOUS les JOURS"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/parisBaguette"
-        android:layout_marginTop="70dp"
-        android:id="@+id/tousLesJours"
-        android:layout_alignRight="@+id/parisBaguette"
-        android:layout_alignEnd="@+id/parisBaguette" />
-
-    <Button
-        android:text="PARIS CROISSANT"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/tousLesJours"
-        android:layout_alignLeft="@+id/tousLesJours"
-        android:layout_alignStart="@+id/tousLesJours"
-        android:layout_marginTop="70dp"
-        android:id="@+id/parisCroissant" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-</RelativeLayout>
+        <Button
+            android:text="PARIS BAGUETTE"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:id="@+id/parisBaguette" />
+
+        <Button
+            android:textAllCaps="false"
+            android:text="TOUS les JOURS"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/parisBaguette"
+            android:layout_marginTop="70dp"
+            android:id="@+id/tousLesJours"
+            android:layout_alignRight="@+id/parisBaguette"
+            android:layout_alignEnd="@+id/parisBaguette" />
+
+        <Button
+            android:text="PARIS CROISSANT"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tousLesJours"
+            android:layout_alignLeft="@+id/tousLesJours"
+            android:layout_alignStart="@+id/tousLesJours"
+            android:layout_marginTop="70dp"
+            android:id="@+id/parisCroissant" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/loading_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        />
+
+</FrameLayout>

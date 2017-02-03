@@ -27,7 +27,10 @@ import java.util.Calendar;
 
 public class CheckPayActivity extends BaseActivity {
 
+    public static final int SELECT_SHOP = 1000;
+
     // UI
+    private ImageView closeBtn;
     private TextView tv_shop;
     private TextView tv_selectShopBtn;
     private TextView pickDateBtn;
@@ -71,8 +74,24 @@ public class CheckPayActivity extends BaseActivity {
 
     private void InitUI(){
 
+        closeBtn = (ImageView)findViewById(R.id.close_btn);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         tv_shop = (TextView)findViewById(R.id.tv_shop);
         tv_selectShopBtn = (TextView)findViewById(R.id.tv_select_shop_btn);
+        tv_selectShopBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SelectShopActivity.class);
+                intent.putExtra("code", SELECT_SHOP);
+                startActivityForResult(intent, SELECT_SHOP);
+            }
+        });
         pickDateBtn = (TextView)findViewById(R.id.pick_date_btn);
         pickDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +185,7 @@ public class CheckPayActivity extends BaseActivity {
             public void onBtnClick() {
                 dialog.dismiss();
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                intent.putExtra("isNoLoading", true);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -174,6 +194,19 @@ public class CheckPayActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case SELECT_SHOP:
+                shop = data.getStringExtra("title");
+                tv_shop.setText(shop);
+                break;
+            default:
+                break;
+        }
+    }
 
 
 }

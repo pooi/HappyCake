@@ -60,6 +60,19 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".SelectShopActivity"
+            android:label="Contents"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="tk.twpooi.happycake" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".FinalInformation"
             android:label="Contents"

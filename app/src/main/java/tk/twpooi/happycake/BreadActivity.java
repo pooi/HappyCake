@@ -65,6 +65,7 @@ public class BreadActivity extends BaseActivity {
     };
 
     private int SIZE = 3;
+    public static boolean isSelectFinish;
 
 
 
@@ -94,7 +95,7 @@ public class BreadActivity extends BaseActivity {
 
     private void InitData(){
 
-
+        isSelectFinish = false;
 
     }
 
@@ -139,6 +140,8 @@ public class BreadActivity extends BaseActivity {
         sizeViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
 
             }
 
@@ -192,6 +195,15 @@ public class BreadActivity extends BaseActivity {
         dotIndicator.setSelectedItem(0, true);
     }
 
+    private void ScrollDisable(boolean check){
+
+        sizeViewPager.setPagingEnabled(!check);
+        sponViewPager.setPagingEnabled(!check);
+        sizeDotIndicator.setVisibility(!check);
+        sponDotIndicator.setVisibility(!check);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -207,6 +219,8 @@ public class BreadActivity extends BaseActivity {
                 SetFadeInAnimation(sizeSelectField);
                 nextBtn.setVisibility(View.VISIBLE);
                 SetFadeInAnimation(nextBtn);
+                isSelectFinish = true;
+                ScrollDisable(isSelectFinish);
                 break;
             default:
                 break;
