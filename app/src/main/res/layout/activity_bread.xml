@@ -8,10 +8,10 @@
     >
 
     <LinearLayout
+        android:id="@+id/li_select_field"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="2"
         android:layout_above="@+id/li_button"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -19,20 +19,31 @@
 
 
         <RelativeLayout
+            android:id="@+id/size_select_field"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             >
 
-            <tk.twpooi.happycake.CustomViewPager
-                android:id="@+id/size_view_pager"
+            <tk.twpooi.happycake.PagerContainer
+                android:id="@+id/size_view_pager_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/size_indicator_ad"
                 >
 
+                <tk.twpooi.happycake.CustomViewPager
+                    android:id="@+id/size_view_pager"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    >
 
-            </tk.twpooi.happycake.CustomViewPager>
+
+                </tk.twpooi.happycake.CustomViewPager>
+
+            </tk.twpooi.happycake.PagerContainer>
+
 
             <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
                 android:id="@+id/size_indicator_ad"
@@ -45,20 +56,31 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/spon_select_field"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             >
 
-            <tk.twpooi.happycake.CustomViewPager
-                android:id="@+id/spon_view_pager"
+
+            <tk.twpooi.happycake.PagerContainer
+                android:id="@+id/spon_view_pager_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/spon_indicator_ad"
                 >
 
+                <tk.twpooi.happycake.CustomViewPager
+                    android:id="@+id/spon_view_pager"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    >
 
-            </tk.twpooi.happycake.CustomViewPager>
+
+                </tk.twpooi.happycake.CustomViewPager>
+
+            </tk.twpooi.happycake.PagerContainer>
 
 
             <com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator
@@ -80,7 +102,6 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:weightSum="2"
         android:layout_alignParentBottom="true"
         >
 

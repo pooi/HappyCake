@@ -74,6 +74,7 @@
             android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="이전"
+            android:textColor="@color/white"
             />
 
         <Button
@@ -83,6 +84,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:text="다음"
+            android:textColor="@color/white"
             />
     </LinearLayout>
 

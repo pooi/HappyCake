@@ -8,18 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by tw on 2016-08-16.
  */
 public class BreadFragment extends Fragment {
 
-    // UI
+    // BASIC UI
     private View view;
     private Context context;
 
+    // DATA
+    private int resultCode;
     private int position;
+    private String title;
+    private String content;
+
+    // UI
     private ImageView imageView;
+    private TextView tv_title;
+    private TextView tv_content;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -27,7 +36,10 @@ public class BreadFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 //        title = (String)getArguments().getSerializable("title");
+        resultCode = getArguments().getInt("code");
         position = getArguments().getInt("position");
+        title = getArguments().getString("title");
+        content = getArguments().getString("content");
 //        isOverlay = getArguments().getBoolean("visiable", false);
     }
 
@@ -55,6 +67,18 @@ public class BreadFragment extends Fragment {
 
         imageView = (ImageView)view.findViewById(R.id.img);
         imageView.setImageResource(R.mipmap.ic_launcher);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, BreadPopupActivity.class);
+                intent.putExtra("code", resultCode);
+                getActivity().startActivityForResult(intent, resultCode);
+            }
+        });
+        tv_title = (TextView)view.findViewById(R.id.tv_title);
+        tv_title.setText(title);
+        tv_content = (TextView)view.findViewById(R.id.tv_content);
+        tv_content.setText(content);
 
     }
 

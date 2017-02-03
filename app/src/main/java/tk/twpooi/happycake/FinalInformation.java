@@ -50,16 +50,17 @@ public class FinalInformation extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent back = new Intent(FinalInformation.this, MainActivity.class);
-//                startActivity(back);
+                finish();
             }
         });
 
         goToNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent goToNext = new Intent(FinalInformation.this, MainActivity.class);//MainActivity.class를 결재페이지로 설정할것
-//                startActivity(goToNext);
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        CheckPayActivity.class);
+                startActivity(intent);
             }
         });
     }
