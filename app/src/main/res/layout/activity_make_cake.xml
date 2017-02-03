@@ -193,7 +193,7 @@
             android:id="@+id/previous_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_left_grey600_48dp"
+            android:src="@drawable/ic_chevron_left_black_48dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             />
@@ -216,7 +216,7 @@
             android:id="@+id/next_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_right_grey600_48dp"
+            android:src="@drawable/ic_chevron_right_black_48dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             />
