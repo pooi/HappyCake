@@ -66,7 +66,7 @@ public class BreadFragment extends Fragment {
     private void initUI(){
 
         imageView = (ImageView)view.findViewById(R.id.img);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        imageView.setImageResource(R.drawable.ic_launcher);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

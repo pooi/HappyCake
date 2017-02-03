@@ -58,7 +58,7 @@ public class BreadPopupActivity extends BaseActivity {
             }
         });
         img = (ImageView)findViewById(R.id.img);
-        img.setImageResource(R.mipmap.ic_launcher);
+        img.setImageResource(R.drawable.ic_launcher);
         selectBtn = (Button)findViewById(R.id.select_btn);
         selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override

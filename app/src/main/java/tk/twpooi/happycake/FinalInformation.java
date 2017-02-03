@@ -30,7 +30,7 @@ public class FinalInformation extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finalinformation);
         cake = (ImageView) findViewById(R.id.cake);
-        cake.setImageResource(R.mipmap.ic_launcher);
+        cake.setImageResource(R.drawable.ic_launcher);
 
         finalSize = (TextView) findViewById(R.id.finalSize);
         finalSizeText = (TextView) findViewById(R.id.finalSizeText);
