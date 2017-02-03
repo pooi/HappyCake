@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_11"
+        android:scaleType="centerCrop"
+        />
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fm_straw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/fm_grap"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_straw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/to_01"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_straw"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:text="딸기"
+                    />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tv_straw"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/circle_text"
+            android:layout_alignRight="@+id/fm_straw"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+        <FrameLayout
+            android:id="@+id/fm_grap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_grap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/to_02"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_grap"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:text="거봉"
+                    />
+
+            </RelativeLayout>
+
+
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/tv_grap"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/circle_text"
+            android:layout_alignRight="@+id/fm_grap"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+        <FrameLayout
+            android:id="@+id/fm_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/fm_grap"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/to_03"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_blue"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:text="블루베리"
+                    />
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_blue"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/circle_text"
+            android:layout_alignRight="@+id/fm_blue"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+
+        <ImageView
+            android:id="@+id/cake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/bigcake_01"
+            android:paddingTop="60dp"
+            android:scaleType="centerCrop"
+            >
+
+        </ImageView>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/previous_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_left_grey600_48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/show_option_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"
+            android:background="@drawable/round_button_transparent"
+            android:text="옵션보기"
+            android:textColor="@color/white"
+            />
+
+
+        <ImageView
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right_grey600_48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/li_select_option"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+</FrameLayout>

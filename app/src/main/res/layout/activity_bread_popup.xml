@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_above="@+id/li_text"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/cake_size_01"
+                android:src="@drawable/sp_01"
                 android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"
                 />

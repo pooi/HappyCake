@@ -143,7 +143,7 @@ public class BreadActivity extends BaseActivity {
                 data.put("price", price);
                 Intent intent = new Intent(
                         getApplicationContext(),
-                        FinalInformation.class);
+                        MakeCakeActivity.class);
                 intent.putExtra("data", data);
                 startActivity(intent);
             }

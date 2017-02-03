@@ -85,7 +85,7 @@ public class StartActivity extends BaseActivity {
                 .into(croBtn);
 
         loadingImg = (ImageView)findViewById(R.id.loading_img);
-        loadingImg.setImageResource(R.drawable.loading_img);
+        loadingImg.setImageResource(R.drawable.roading_01);
 
         if(!isNoLoading){
             ShowLoading();

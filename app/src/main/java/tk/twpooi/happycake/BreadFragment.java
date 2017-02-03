@@ -33,9 +33,9 @@ public class BreadFragment extends Fragment {
 
     // RESOURCES
     private int[] sizeDrawable = {
-            R.drawable.cake_size_popup,
-            R.drawable.cake_size_popup,
-            R.drawable.cake_size_popup
+            R.drawable.sp_01,
+            R.drawable.sp_01,
+            R.drawable.sp_01
     };
     private int[] sponDrawable = {
             R.drawable.spon_default_popup,

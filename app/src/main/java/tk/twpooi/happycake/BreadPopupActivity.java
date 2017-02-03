@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.github.ksoichiro.android.observablescrollview.CacheFragmentStatePagerAdapter;
-import com.matthewtamlin.sliding_intro_screen_library.indicators.DotIndicator;
-
 public class BreadPopupActivity extends BaseActivity {
 
     // UI
