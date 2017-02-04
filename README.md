@@ -9,8 +9,16 @@
 <br>
 
 ## Feature
+> 참고 : <a href=“https://drive.google.com/open?id=0B67FssKXYIKQeFJfaFlsWVRYV2c”>https://drive.google.com/open?id=0B67FssKXYIKQeFJfaFlsWVRYV2c
+
 <ul>
+<li>해피 케이크는 생크림 케이크의 유통기한 불명확, 나만의 생크림 케이크를 만들어 보고자하는 사람들의 욕구를 채워주고자 기획 및 개발 된 어플입니다. 나만의 케이크 제작 - 주문 및 결제 - 픽업을 기본 처리 과정으로 합니다. 기대효과로는 본사 - 공급자 - 가맹점간의 상호 이점 보완, 수요자 - 일반 소비자간에 신선도 보장 등이 있습니다.</li>
 </ul>
+
+<br>
+
+## Demo
+<a href="https://drive.google.com/open?id=0B67FssKXYIKQekp2SXg1NmtjSWc">https://drive.google.com/open?id=0B67FssKXYIKQekp2SXg1NmtjSWc
 
 <br>
 
