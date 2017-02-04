@@ -497,7 +497,7 @@
                         android:text="0원"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="#FF4081"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"

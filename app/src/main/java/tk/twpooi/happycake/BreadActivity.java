@@ -72,9 +72,9 @@ public class BreadActivity extends BaseActivity {
             "초코"
     };
     private String[] sponContentList = {
-            "기본적인 빵으로 만들어진 베이스입니다.",
-            "기본적인 빵으로 만들어진 베이스입니다.",
-            "기본적인 빵으로 만들어진 베이스입니다."
+            "가장 기본적인 빵입니다.",
+            "딸기향을 좋아하는 분들께 추천합니다.",
+            "단맛을 좋아하는 분들께 추천합니다."
     };
 
     public static boolean isSelectFinish;

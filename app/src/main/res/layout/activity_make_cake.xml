@@ -226,24 +226,54 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/li_select_option"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:background="@color/white"
+    <RelativeLayout
+        android:id="@+id/rl_select_option"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
         >
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
+
+
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:background="@drawable/popup_background_white"
             >
 
-        </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/popup_title"
+                android:text="옵션"
+                android:textColor="@color/black"
+                android:gravity="center"
+                />
 
-    </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/save_and_close_btn"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="현재상태 저장 후 종료"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>

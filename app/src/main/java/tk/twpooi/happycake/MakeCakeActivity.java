@@ -2,6 +2,7 @@ package tk.twpooi.happycake;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -21,6 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.flyco.animation.FadeEnter.FadeEnter;
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.MaterialDialog;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,14 +39,14 @@ import java.util.HashMap;
 public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchListener, ControlCakeListener  {
 
 
-    private static final int MAX_STRAW = 5;
-    private static final int MAX_GRAP = 5;
-    private static final int MAX_BLUE = 5;
+    private static final int MAX_STRAW = 10;
+    private static final int MAX_GRAP = 10;
+    private static final int MAX_BLUE = 10;
 
     private MyHandler handler = new MyHandler();
     private final int MSG_MESSAGE_MAKE_UI = 500;
 
-    private  RelativeLayout root;
+    private RelativeLayout root;
     private FrameLayout defaultStrawImage;
     private FrameLayout defaultGrapImage;
     private FrameLayout defaultBlueImage;
@@ -66,7 +71,6 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
     private TextView tv_straw;
     private TextView tv_grap;
     private TextView tv_blue;
-//    private TextView tv_complete;
 
     float oldXvalue;
     float oldYvalue;
@@ -74,13 +78,15 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
 
     private ProgressDialog progressDialog;
 
+    private TextView saveAndCloseBtn;
+
 
     // Recycle View
     private RecyclerView rv;
     private LinearLayoutManager mLinearLayoutManager;
     private MakeCakeCustomAdapter adapter;
     private ArrayList<HashMap<String, Object>> list;
-    private LinearLayout li_optionField;
+    private RelativeLayout li_optionField;
     private TextView showOptionBtn;
 
     // DATA
@@ -92,7 +98,10 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
         setContentView(R.layout.activity_make_cake);
 
         Intent intent = getIntent();
-        data = (HashMap<String, Object>)intent.getSerializableExtra("data");
+        boolean isSaved = intent.getBooleanExtra("isSaved", false);
+        if(!isSaved){
+            data = (HashMap<String, Object>)intent.getSerializableExtra("data");
+        }
 
         root = (RelativeLayout) findViewById(R.id.root);
         defaultStrawImage = (FrameLayout)findViewById(R.id.fm_straw);
@@ -134,7 +143,7 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
             }
         });
 
-        li_optionField = (LinearLayout)findViewById(R.id.li_select_option);
+        li_optionField = (RelativeLayout)findViewById(R.id.rl_select_option);
         li_optionField.setVisibility(View.GONE);
         showOptionBtn = (TextView)findViewById(R.id.show_option_btn);
         showOptionBtn.setOnClickListener(new View.OnClickListener() {
@@ -147,23 +156,151 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
                 }
             }
         });
+        saveAndCloseBtn = (TextView)findViewById(R.id.save_and_close_btn);
+        saveAndCloseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final MaterialDialog dialog = new MaterialDialog(MakeCakeActivity.this);
+                dialog.content("저장 후 종료하시겠습니까?")
+                        .title("확인")
+                        .btnText("취소", "확인")
+                        .showAnim(new FadeEnter())
+                        .show();
+                OnBtnClickL left = new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        dialog.dismiss();
+                    }
+                };
+                OnBtnClickL right = new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        dialog.dismiss();
+                        saveAndClose();
+                    }
+                };
+                dialog.setOnBtnClickL(left, right);
+            }
+        });
 
         initRV();
 
         progressDialog = new ProgressDialog(this);
 
-        progressDialog.show();
-        new Thread(){
-            @Override
-            public void run(){
-                try{
-                    Thread.sleep(1000);
-                    handler.sendMessage(handler.obtainMessage(MSG_MESSAGE_MAKE_UI));
-                }catch (Exception e){
-                    e.printStackTrace();
+        if(!isSaved){
+
+            progressDialog.show();
+            new Thread(){
+                @Override
+                public void run(){
+                    try{
+                        Thread.sleep(1000);
+                        handler.sendMessage(handler.obtainMessage(MSG_MESSAGE_MAKE_UI));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }.start();
+            }.start();
+        }else{
+
+            loadSaveData((HashMap<String, Object>)intent.getSerializableExtra("saveData"));
+        }
+
+    }
+
+    private void saveAndClose(){
+
+        HashMap<String, Object> map = new HashMap<>();
+        CustomPoint sPoint = new CustomPoint(strawPoint.x, strawPoint.y);
+        CustomPoint gPoint = new CustomPoint(grapPoint.x, grapPoint.y);
+        CustomPoint bPoint = new CustomPoint(bluePoint.x, bluePoint.y);
+        map.put("strawPoint", sPoint);
+        map.put("grapPoint", gPoint);
+        map.put("bluePoint", bPoint);
+
+        map.put("strawSize", straw.size());
+        map.put("grapSize", grap.size());
+        map.put("blueSize", blue.size());
+
+        ArrayList<CustomPoint> strawPointList = new ArrayList<>();
+        for(int i=0; i<strawCompleteList.size(); i++){
+            ImageView v = strawCompleteList.get(i);
+            strawPointList.add(new CustomPoint((int)v.getX(), (int)v.getY()));
+        }
+        ArrayList<CustomPoint> grapPointList = new ArrayList<>();
+        for(int i=0; i<grapCompleteList.size(); i++){
+            ImageView v = grapCompleteList.get(i);
+            grapPointList.add(new CustomPoint((int)v.getX(), (int)v.getY()));
+        }
+        ArrayList<CustomPoint> bluePointList = new ArrayList<>();
+        for(int i=0; i<blueCompleteList.size(); i++){
+            ImageView v = blueCompleteList.get(i);
+            bluePointList.add(new CustomPoint((int)v.getX(), (int)v.getY()));
+        }
+
+        map.put("strawCompletePoint", strawPointList);
+        map.put("grapCompletePoint", grapPointList);
+        map.put("blueCompletePoint", bluePointList);
+
+        map.put("data", data);
+
+        // saveData
+        FileManager fileManager = new FileManager(getApplicationContext());
+        fileManager.writeSaveData(map);
+
+        HashMap<String, Object> h = fileManager.readSaveData();
+        System.out.println(h);
+
+        Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+        intent.putExtra("isNoLoading", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+    }
+
+    private void loadSaveData(HashMap<String, Object> map){
+
+        data = (HashMap<String, Object>)map.get("data");
+
+        CustomPoint sPoint = (CustomPoint)map.get("strawPoint");
+        CustomPoint gPoint = (CustomPoint)map.get("grapPoint");
+        CustomPoint bPoint = (CustomPoint)map.get("bluePoint");
+        strawPoint = new Point(sPoint.x, sPoint.y);//(Point)map.get("strawPoint");
+        grapPoint = new Point(gPoint.x, gPoint.y);//(Point)map.get("grapPoint");
+        bluePoint = new Point(bPoint.x, bPoint.y);//(Point)map.get("bluePoint");
+
+        int strawSize = (int)map.get("strawSize");
+        int grapSize = (int)map.get("grapSize");
+        int blueSize = (int)map.get("blueSize");
+
+        ArrayList<CustomPoint> strawPointList = (ArrayList<CustomPoint>)map.get("strawCompletePoint");
+        ArrayList<CustomPoint> grapPointList = (ArrayList<CustomPoint>)map.get("grapCompletePoint");
+        ArrayList<CustomPoint> bluePointList = (ArrayList<CustomPoint>)map.get("blueCompletePoint");
+
+        for(int i=0; i<strawSize; i++){
+            addStrawView();
+        }
+        for(int i=0; i<grapSize; i++){
+            addGrapView();
+        }
+        for(int i=0; i<blueSize; i++){
+            addBlueView();
+        }
+
+        for(CustomPoint p : strawPointList){
+            addCompleteStrawView(new Point(p.x, p.y));
+        }
+        for(CustomPoint p : grapPointList){
+            addCompleteGrapView(new Point(p.x, p.y));
+        }
+        for(CustomPoint p : bluePointList){
+            addCompleteBlueView(new Point(p.x, p.y));
+        }
+
+        MakeList(strawSize, grapSize, blueSize);
+
+        setTextViewCount();
 
     }
 
@@ -207,14 +344,14 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
         rv.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL_LIST));
         rv.setLayoutManager(mLinearLayoutManager);
 
-        MakeList();
+        MakeList(strawCount, grapCount, blueCount);
 
     }
 
 
-    public void MakeList(){
+    public void MakeList(int s, int g, int b){
 
-        adapter = new MakeCakeCustomAdapter(getApplicationContext(), this, MakeData(), this);
+        adapter = new MakeCakeCustomAdapter(getApplicationContext(), this, MakeData(s, g, b), this);
 
         rv.setAdapter(adapter);
 
@@ -222,23 +359,23 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
 
     }
 
-    private ArrayList<HashMap<String, Object>> MakeData(){
+    private ArrayList<HashMap<String, Object>> MakeData(int s, int g, int b){
 
         list = new ArrayList<>();
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("title", "딸기");
-        map.put("num", strawCount);
+        map.put("num", s);
         list.add(map);
 
         map = new HashMap<>();
         map.put("title", "거봉");
-        map.put("num", grapCount);
+        map.put("num", g);
         list.add(map);
 
         map = new HashMap<>();
         map.put("title", "블루베리");
-        map.put("num", blueCount);
+        map.put("num", b);
         list.add(map);
 
         return list;
@@ -529,6 +666,21 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
         straw.add(imageView);
     }
 
+    private void addCompleteStrawView(Point p){
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(R.drawable.fr_01);
+        imageView.setOnTouchListener(MakeCakeActivity.this);
+        imageView.setTag("straw");
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); //WRAP_CONTENT param can be FILL_PARENT
+        params.leftMargin = p.x; //XCOORD
+        params.topMargin = p.y; //YCOORD
+        imageView.setLayoutParams(params);
+
+        root.addView(imageView);
+        strawCompleteList.add(imageView);
+    }
+
     private void addGrapView(){
         ImageView imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.to_02);
@@ -544,6 +696,21 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
         grap.add(imageView);
     }
 
+    private void addCompleteGrapView(Point p){
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(R.drawable.fr_02);
+        imageView.setOnTouchListener(MakeCakeActivity.this);
+        imageView.setTag("grap");
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); //WRAP_CONTENT param can be FILL_PARENT
+        params.leftMargin = p.x; //XCOORD
+        params.topMargin = p.y; //YCOORD
+        imageView.setLayoutParams(params);
+
+        root.addView(imageView);
+        grapCompleteList.add(imageView);
+    }
+
     private void addBlueView(){
         ImageView imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.to_03);
@@ -557,6 +724,21 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
 
         root.addView(imageView);
         blue.add(imageView);
+    }
+
+    private void addCompleteBlueView(Point p){
+        ImageView imageView = new ImageView(getApplicationContext());
+        imageView.setImageResource(R.drawable.fr_03);
+        imageView.setOnTouchListener(MakeCakeActivity.this);
+        imageView.setTag("blue");
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT); //WRAP_CONTENT param can be FILL_PARENT
+        params.leftMargin = p.x; //XCOORD
+        params.topMargin = p.y; //YCOORD
+        imageView.setLayoutParams(params);
+
+        root.addView(imageView);
+        blueCompleteList.add(imageView);
     }
 
     private boolean detectConflict(View view, float dx, float dy){
@@ -582,6 +764,15 @@ public class MakeCakeActivity extends AppCompatActivity implements View.OnTouchL
         }
         return false;
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(li_optionField.getVisibility() == View.VISIBLE){
+            li_optionField.setVisibility(View.GONE);
+        }else {
+            super.onBackPressed();
+        }
     }
 
     @Override

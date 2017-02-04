@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -103,6 +104,8 @@ public class FinalInformation extends BaseActivity {
         };
         final NormalListDialog dialog = new NormalListDialog(this, list);
         dialog.title(shop)
+                .titleBgColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow))
+                .titleTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black))
                 .titleTextSize_SP(14.5f)
                 .show();
 

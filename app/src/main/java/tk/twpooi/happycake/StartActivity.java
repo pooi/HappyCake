@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.flyco.animation.FadeEnter.FadeEnter;
+import com.flyco.dialog.listener.OnBtnClickL;
+import com.flyco.dialog.widget.MaterialDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -25,6 +28,8 @@ public class StartActivity extends BaseActivity {
     private boolean isNoLoading = false;
 
     private HashMap<String, Object> data;
+
+    private FileManager fileManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +92,43 @@ public class StartActivity extends BaseActivity {
         loadingImg = (ImageView)findViewById(R.id.loading_img);
         loadingImg.setImageResource(R.drawable.roading_01);
 
+        fileManager = new FileManager(getApplicationContext());
+
         if(!isNoLoading){
             ShowLoading();
+
+            final HashMap<String, Object> map = fileManager.readSaveData();
+            if(map != null){
+
+                final MaterialDialog dialog = new MaterialDialog(StartActivity.this);
+                dialog.content("이전에 저장한 데이터가 있습니다.\n이어가겠습니까?")
+                        .title("확인")
+                        .btnText("아니요", "예")
+                        .showAnim(new FadeEnter())
+                        .show();
+                OnBtnClickL left = new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        fileManager.writeSaveData(null);
+                        dialog.dismiss();
+                    }
+                };
+                OnBtnClickL right = new OnBtnClickL() {
+                    @Override
+                    public void onBtnClick() {
+                        dialog.dismiss();
+                        fileManager.writeSaveData(null);
+                        Intent intent = new Intent(getApplicationContext(), MakeCakeActivity.class);
+                        intent.putExtra("isSaved", true);
+                        intent.putExtra("saveData", map);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                };
+                dialog.setOnBtnClickL(left, right);
+
+            }
+
         }else{
             loadingImg.setVisibility(View.GONE);
         }
